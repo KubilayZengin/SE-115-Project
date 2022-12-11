@@ -25,6 +25,7 @@ public class Cards {
 
 
     public static void createDeck(Cards[] deck){
+        System.out.println("Creating a sequential deck... ");
         int counter=0;
         char[] char_array = {'♠', '♣', '♥', '♦'};
         String[] string_array = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
@@ -38,7 +39,8 @@ public class Cards {
             }
             System.out.println("");
         }
-        System.out.println(" ");
+        System.out.println("Creating the sequential deck was succesfull.");
+        System.out.println();
     }
 
     public static void shuffleDeck(Cards[] deck){
@@ -46,8 +48,7 @@ public class Cards {
         Random random = new Random(System.currentTimeMillis());
 
         //Shuffling Part
-        System.out.println("Shuffling the deck...");
-        int[] array_backup = new int[52];
+        System.out.println("Shuffling the sequential deck...");
         int counter=0;
         boolean isShuffleOver=true;
         while (isShuffleOver)
@@ -64,16 +65,53 @@ public class Cards {
                 isShuffleOver=false;
             }
         }
-        System.out.println("Shuffled deck:");
+        for (int i=0; i<52 ; i++){ deck[i]=newdeck[i];}
+
         for (int i=0;i<52;i++)
         {
             if (i==13 || i==26 || i==39)
             {
                 System.out.println(" ");
             }
-            System.out.print(newdeck[i].symbol);
-            System.out.print(newdeck[i].number);
+            System.out.print(deck[i].symbol);
+            System.out.print(deck[i].number);
             System.out.print(" ");
         }
+        System.out.println();
+        System.out.println("Shuffling the deck was successfull.");
+        System.out.println();
+
+    }
+    public static void cutDeck(Cards[] deck){
+        System.out.println("Cutting the shuffled deck...");
+        Cards[] cutdeck = new Cards[52];
+        Random random = new Random(System.currentTimeMillis());
+        int max=52;
+        int min=1;
+        int y = random.nextInt(max - min) + min;;
+        int counter=0;
+        //Cutting the shuffled deck.
+        for (int i=y;i<52;i++)
+        {
+            cutdeck[counter]=deck[i];
+            counter=counter+1;
+        }
+        for (int i=0;i<y;i++)
+        {
+            cutdeck[counter]=deck[i];
+            counter=counter+1;
+        }
+        for (int i=0; i<52 ; i++){ deck[i]=cutdeck[i];}
+
+        for (int i=0;i<52;i++)
+        {
+            if (i==13 || i==26 || i==39)
+            {
+                System.out.println(" ");
+            }
+            System.out.print(deck[i].symbol);
+            System.out.print(deck[i].number);
+        }
+        System.out.println("Cutting the deck was succesfull.");
     }
 }
