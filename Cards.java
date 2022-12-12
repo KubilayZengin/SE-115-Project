@@ -112,6 +112,67 @@ public class Cards {
             System.out.print(deck[i].symbol);
             System.out.print(deck[i].number);
         }
+        System.out.println();
         System.out.println("Cutting the deck was succesfull.");
+        System.out.println();
+    }
+    public static void dealCards(Cards[] deck){
+        System.out.println("Dealing the cards...");
+        Cards[] players_Deck = new Cards[4];
+        Cards[] computers_Deck = new Cards[4];
+
+        int counter=-1;
+        for (int i=0;i<4;i++)
+        {
+            counter=counter+1;
+            players_Deck[i]=deck[counter];
+            computers_Deck[i]=deck[counter+1];
+
+            counter=counter+1;
+        }
+        System.out.println("Player's Hand: ");
+        for (int i=0;i<4;i++)
+        {
+            System.out.print(players_Deck[i].symbol);
+            System.out.print(players_Deck[i].number+" ");
+        }
+        System.out.println();
+        System.out.println("Computer's Hand: ");
+        for (int i=0;i<4;i++)
+        {
+            System.out.print(computers_Deck[i].symbol);
+            System.out.print(computers_Deck[i].number+" ");
+        }
+        System.out.println();
+
+        System.out.println("The remaining cards in the deck: ");
+        for (int i=0;i<deck.length;i++)
+        {
+            if (i==8)
+            {
+                break;
+            }
+            deck[i].number=null;
+            deck[i].symbol=0;
+
+        }
+        for (int i=0;i<deck.length;i++)
+        {
+            if (deck[i].symbol==0 || deck[i].number==null)
+            {
+                continue;
+            }
+            else
+            {
+                System.out.print(deck[i].symbol);
+                System.out.print(deck[i].number+" ");
+            }
+        }
+
+
+
+
+
+
     }
 }

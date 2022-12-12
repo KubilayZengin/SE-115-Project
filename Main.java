@@ -5,7 +5,6 @@ public class Main {
         Cards.createDeck(deck);
         Cards.shuffleDeck(deck);
         Cards.cutDeck(deck);
-
-
+        Cards.dealCards(deck);
     }
 }
