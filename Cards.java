@@ -120,7 +120,9 @@ public class Cards {
         System.out.println("Dealing the cards...");
         Cards[] players_Deck = new Cards[4];
         Cards[] computers_Deck = new Cards[4];
+        Cards[] board_Deck = new Cards[4];
 
+        //Dealing the cards into players hand and computers hand
         int counter=-1;
         for (int i=0;i<4;i++)
         {
@@ -129,7 +131,18 @@ public class Cards {
             computers_Deck[i]=deck[counter+1];
 
             counter=counter+1;
+
+            if (i==3)  //Dealing to the board now...
+            {
+                for (int j=0;j<4;j++)
+                {
+                    board_Deck[j]=deck[counter+1];
+                    counter=counter+1;
+                }
+
+            }
         }
+
         System.out.println("Player's Hand: ");
         for (int i=0;i<4;i++)
         {
@@ -144,11 +157,15 @@ public class Cards {
             System.out.print(computers_Deck[i].number+" ");
         }
         System.out.println();
-
-        System.out.println("The remaining cards in the deck: ");
+        System.out.println("Board: ");
+        for (int i=0;i<4;i++)
+        {
+            System.out.print(board_Deck[i].symbol);
+            System.out.print(board_Deck[i].number+" ");
+        }
         for (int i=0;i<deck.length;i++)
         {
-            if (i==8)
+            if (i==12)
             {
                 break;
             }
@@ -156,6 +173,8 @@ public class Cards {
             deck[i].symbol=0;
 
         }
+        System.out.println();
+        System.out.println("The remaining cards in the deck: ");
         for (int i=0;i<deck.length;i++)
         {
             if (deck[i].symbol==0 || deck[i].number==null)
@@ -168,11 +187,5 @@ public class Cards {
                 System.out.print(deck[i].number+" ");
             }
         }
-
-
-
-
-
-
     }
 }
