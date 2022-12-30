@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Cards {
 
@@ -23,7 +24,7 @@ public class Cards {
     }
 
 
-
+//Creating a deck that contains all 52 cards.
     public static void createDeck(Cards[] deck){
         System.out.println("Creating a sequential deck... ");
         int counter=0;
@@ -42,7 +43,7 @@ public class Cards {
         System.out.println("Creating the sequential deck was succesfull.");
         System.out.println();
     }
-
+//Shuffling algorithm.
     public static void shuffleDeck(Cards[] deck){
         Cards[] newdeck = new Cards[52];
         Random random = new Random(System.currentTimeMillis());
@@ -82,6 +83,7 @@ public class Cards {
         System.out.println();
 
     }
+    //Cutting the shuffled deck at a random point chosen by computer.
     public static void cutDeck(Cards[] deck){
         System.out.println("Cutting the shuffled deck...");
         Cards[] cutdeck = new Cards[52];
@@ -116,6 +118,7 @@ public class Cards {
         System.out.println("Cutting the deck was succesfull.");
         System.out.println();
     }
+    //Dealing the cards to the player and computer.The order of dealing is 1 to the player and 1 to the computer and so on.
     public static void dealCards(Cards[] deck){
         System.out.println("Dealing the cards...");
         Cards[] players_Deck = new Cards[4];
@@ -131,8 +134,8 @@ public class Cards {
             computers_Deck[i]=deck[counter+1];
 
             counter=counter+1;
-
-            if (i==3)  //Dealing to the board now...
+//Dealing to the board now...
+            if (i==3)
             {
                 for (int j=0;j<4;j++)
                 {
@@ -163,7 +166,10 @@ public class Cards {
             System.out.print(board_Deck[i].symbol);
             System.out.print(board_Deck[i].number+" ");
         }
-        for (int i=0;i<deck.length;i++)
+        //There are 4 cards on the board but only top of them must be visible.
+        //System.out.print(board_Deck[3].symbol);
+        //System.out.print(board_Deck[3].number+" ");
+        /*for (int i=0;i<deck.length;i++)
         {
             if (i==12)
             {
@@ -172,8 +178,10 @@ public class Cards {
             deck[i].number=null;
             deck[i].symbol=0;
 
-        }
-        System.out.println();
+        }*/
+        //The cards that used in the deck must be abstract from the deck(by making them null).
+
+        /*System.out.println();
         System.out.println("The remaining cards in the deck: ");
         for (int i=0;i<deck.length;i++)
         {
@@ -187,5 +195,124 @@ public class Cards {
                 System.out.print(deck[i].number+" ");
             }
         }
+        */
+        //Playing part
+        Scanner tarama = new Scanner(System.in);
+        int points=0;
+        System.out.println();
+        System.out.println("Select the card you want to play.");
+        System.out.println("Your turn:");
+        int input=tarama.nextInt();
+        //System.out.println(board_Deck[0].number);
+        //System.out.println(board_Deck[0].symbol);
+
+
+//If your played cards number is equal to boards number...
+        if (players_Deck[input-1].number==board_Deck[0].number)
+        {
+            System.out.println("You collected the card!");
+//Setting the point criteria...
+            System.out.println("Board:");
+            System.out.print(board_Deck[1].symbol);
+            System.out.print(board_Deck[1].number+" ");
+            System.out.print(board_Deck[2].symbol);
+            System.out.print(board_Deck[2].number+" ");
+            System.out.print(board_Deck[3].symbol);
+            System.out.print(board_Deck[3].number+" ");
+           if (Integer.parseInt(board_Deck[0].number) ==10&&  board_Deck[0].symbol=='♦')
+            {
+                points=points+3;
+            }
+           else if(Integer.parseInt(board_Deck[0].number)==2 && board_Deck[0].symbol=='♣')
+            {
+                points=points+2;
+            }
+            else
+           {
+               points=points+1;
+           }
+
+        }
+        else if (players_Deck[input-1].number==board_Deck[1].number)
+        {
+            System.out.println("You collected the card!");
+            System.out.println("Board:");
+            System.out.print(board_Deck[0].symbol);
+            System.out.print(board_Deck[0].number+" ");
+            System.out.print(board_Deck[2].symbol);
+            System.out.print(board_Deck[2].number+" ");
+            System.out.print(board_Deck[3].symbol);
+            System.out.print(board_Deck[3].number+" ");
+            if (Integer.parseInt(board_Deck[0].number) ==10&&  board_Deck[0].symbol=='♦')
+            {
+                points=points+3;
+            }
+            else if(Integer.parseInt(board_Deck[0].number)==2 && board_Deck[0].symbol=='♣')
+            {
+                points=points+2;
+            }
+            else
+            {
+                points=points+1;
+            }
+
+        }
+        else if (players_Deck[input-1].number==board_Deck[2].number)
+        {
+            System.out.println("You collected the card!");
+            System.out.println("Board:");
+            System.out.print(board_Deck[0].symbol);
+            System.out.print(board_Deck[0].number+" ");
+            System.out.print(board_Deck[1].symbol);
+            System.out.print(board_Deck[1].number+" ");
+            System.out.print(board_Deck[3].symbol);
+            System.out.print(board_Deck[3].number+" ");
+            if (Integer.parseInt(board_Deck[0].number) ==10&&  board_Deck[0].symbol=='♦')
+            {
+                points=points+3;
+            }
+            else if(Integer.parseInt(board_Deck[0].number)==2 && board_Deck[0].symbol=='♣')
+            {
+                points=points+2;
+            }
+            else
+            {
+                points=points+1;
+            }
+        }
+        else if (players_Deck[input-1].number==board_Deck[3].number)
+        {
+            System.out.println("You collected the card!");
+            System.out.println("Board:");
+            System.out.print(board_Deck[0].symbol);
+            System.out.print(board_Deck[0].number+" ");
+            System.out.print(board_Deck[1].symbol);
+            System.out.print(board_Deck[2].number+" ");
+            System.out.print(board_Deck[2].symbol);
+            System.out.print(board_Deck[2].number+" ");
+            if (Integer.parseInt(board_Deck[0].number) ==10&&  board_Deck[0].symbol=='♦')
+            {
+                points=points+3;
+            }
+            else if(Integer.parseInt(board_Deck[0].number)==2 && board_Deck[0].symbol=='♣')
+            {
+                points=points+2;
+            }
+            else
+            {
+                points=points+1;
+            }
+        }
+        else
+        {
+            System.out.println("Card played.");
+        }
+        //Computers turn
+        //Random random = new Random(System.currentTimeMillis());
+        //int x = random.nextInt(4);
+        //if (computers_Deck[0].number==board_Deck[3].number)
+        //{
+            //System.out.println("Computer played.");
+        //}
     }
 }
